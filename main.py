@@ -4,22 +4,22 @@ import os
 
 app = Flask(__name__)
 
-# بياناتك الجديدة من الصورة (Screenshot_20260317_032340)
+# بياناتك من Green-API (تأكد من وضع التوكن الخاص بك)
 ID_INSTANCE = '7107550486'
-API_TOKEN_INSTANCE = 'ضـع_الـتـوكـن_الـذي_نـسـخـتـه_هـنـا'
+API_TOKEN_INSTANCE = '703e390c5874457eb88680d603170335' 
 API_URL = 'https://7107.api.greenapi.com'
 
 def send_reply(chatId, text):
     url = f"{API_URL}/waInstance{ID_INSTANCE}/sendMessage/{API_TOKEN_INSTANCE}"
     payload = {
-        "chatId": chatId,
+        "chatId": chatId, 
         "message": text + "\n\n---\n⚡ *بواسطة: المتمرد اليماني 505*"
     }
     requests.post(url, json=payload)
 
 @app.route('/')
 def home():
-    return "نظام المتمرد اليماني 505 يعمل بنجاح!"
+    return "نظام المتمرد اليماني 505 يعمل!"
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -30,7 +30,7 @@ def webhook():
             user_msg = data['messageData']['textMessageData']['textMessage']
             
             if "تفعيل" in user_msg:
-                send_reply(chatId, "✅ أهلاً بك! تم تفعيل نظام المتمرد اليماني 505 بنجاح على هذا الرقم.")
+                send_reply(chatId, "✅ تم تفعيل نظام المتمرد اليماني 505 بنجاح!")
             else:
                 send_reply(chatId, f"وصلت رسالتك: {user_msg}")
     except:
